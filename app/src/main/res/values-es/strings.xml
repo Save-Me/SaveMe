@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Save me, phone</string>
+    <string name="action_settings">Settings</string>
+    <string name="service_name">IncomingCallListener</string>
+    <string name="remote_service_started">remote_service_started</string>
+    <string name="remote_service_stopped">remote_service_stopped</string>
+    <string name="remote_service_label">Marina and the Diamonds</string>
+    <string name="add">Añadir</string>
+    <string name="clear">Limpiar</string>
+    <string name="hint">Bloquear numero</string>
+    <string name="blacklist">Mi lista negra</string>
+    <string name="block_hidden_numbers">Bloquear números privados</string>
+    <string name="notification_block_call_private_content_title">Bloqueamos llamada privada</string>
+    <string name="notification_block_call_private_content_text">Número privado</string>
+    <string name="notification_block_call_content_title">Bloqueamos llamada peligrosa</string>
+    <string name="notification_block_call_content_text"></string>
+</resources>
