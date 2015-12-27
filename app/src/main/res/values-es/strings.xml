@@ -2,18 +2,28 @@
 <resources>
 
     <string name="app_name">Save me, phone</string>
-    <string name="action_settings">Settings</string>
-    <string name="service_name">IncomingCallListener</string>
-    <string name="remote_service_started">remote_service_started</string>
-    <string name="remote_service_stopped">remote_service_stopped</string>
-    <string name="remote_service_label">Marina and the Diamonds</string>
+    <string name="action_settings">Configuración</string>
     <string name="add">Añadir</string>
-    <string name="clear">Limpiar</string>
-    <string name="hint">Bloquear numero</string>
+    <string name="clear">Borrar</string>
+    <string name="hint">Bloquear número</string>
     <string name="blacklist">Mi lista negra</string>
     <string name="block_hidden_numbers">Bloquear números privados</string>
-    <string name="notification_block_call_private_content_title">Bloqueamos llamada privada</string>
+    <string name="notification_block_call_private_content_title">Llamada privada detenida</string>
     <string name="notification_block_call_private_content_text">Número privado</string>
-    <string name="notification_block_call_content_title">Bloqueamos llamada peligrosa</string>
-    <string name="notification_block_call_content_text"></string>
+    <string name="notification_block_call_content_title">Llamada peligrosa detenida</string>
+    <string name="notification_block_call_content_text">Te hemos salvado de</string>
+    <string name="add_contact_dialog">Bloquear Nuevo Número.</string>
+    <string name="cancel">Cancelar</string>
+    <string name="contacts">Contactos</string>
+    <string name="permission_read_call_logs">Esta aplicación requiere permisos para leer tu Historial de llamadas</string>
+    <string name="permission_read_contacts">Esta aplicación requiere permisos para leer tus Contactos.</string>
+    <string name="permissions_denied">Lo sentimos, esta función no está disponible sin los permisos necesarios.</string>
+    <string name="recent_calls">Llamadas Recientes</string>
+    <string name="text_description">Ingresa un nuevo número para bloquear o selecciona distintos números de tu historial y contactos.</string>
+    <string name="unknown">Desconocido</string>
+    <string name="block_blacklist_numbers">Bloquear números en lista negra</string>
+    <string name="block_unknown_numbers">Bloquear números desconocidos</string>
+    <string name="block_selected">Bloque seleccionado.</string>
+    <string name="no_contacts_selected">No ha seleccionado ningún contacto</string>
+    <string name="no_blocked_numbers">No hay números bloqueados.</string>
 </resources>

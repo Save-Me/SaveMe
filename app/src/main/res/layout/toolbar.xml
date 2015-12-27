@@ -3,10 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/toolbar"
-    app:theme="@style/MyActionBar"
-    app:popupTheme="@style/AppTheme"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/colorPrimary"
     android:padding="0dp"
-    android:gravity="bottom" />
+    app:layout_scrollFlags="scroll|enterAlwaysCollapsed|snap"
+    app:popupTheme="@style/AppTheme"
+    app:theme="@style/MyActionBar"
+    app:title="@string/blacklist"
+    app:titleTextColor="@color/primary_dark" />

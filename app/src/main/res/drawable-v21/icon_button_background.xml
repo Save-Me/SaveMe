@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/primary_light">
+    <item android:id="@android:id/mask">
+        <shape android:shape="oval">
+            <solid android:color="@android:color/white" />
+            <size
+                android:width="?attr/actionBarSize"
+                android:height="?attr/actionBarSize" />
+        </shape>
+    </item>
+    <item android:drawable="@drawable/round_corners_no_stroke" />
+
+</ripple>

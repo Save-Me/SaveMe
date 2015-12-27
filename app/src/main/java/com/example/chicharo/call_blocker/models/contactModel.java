@@ -1,11 +1,16 @@
 package com.example.chicharo.call_blocker.models;
 
 
-public class contactModel {
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
-    private long _id;
-    private String contactName;
+public class ContactModel extends RealmObject {
+
+    @PrimaryKey
     private String phoneNumber;
+    private String contactName;
+    private String imageUri;
+    private boolean checked;
 
     public String getContactName() {
         return contactName;
@@ -23,11 +28,20 @@ public class contactModel {
         this.phoneNumber = phoneNumber;
     }
 
-    public long get_id() {
-        return _id;
+    public String getImageUri() {
+        return imageUri;
     }
 
-    public void set_id(long _id) {
-        this._id = _id;
+    public void setImageUri(String imageUri) {
+        this.imageUri = imageUri;
     }
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
+    }
+
 }

@@ -14,56 +14,56 @@ import android.provider.ContactsContract;
 import android.telephony.TelephonyManager;
 
 import com.android.internal.telephony.ITelephony;
-import com.example.chicharo.call_blocker.activities.MainActivity;
-import com.example.chicharo.call_blocker.dataBases.PhonesDataSource;
 import com.example.chicharo.call_blocker.R;
+import com.example.chicharo.call_blocker.activities.MainActivity;
+import com.example.chicharo.call_blocker.models.ContactModel;
 
 import java.lang.reflect.Method;
 import java.util.Calendar;
 
+import io.realm.Realm;
+import io.realm.RealmQuery;
+import io.realm.RealmResults;
+
 public class CallBlocker extends BroadcastReceiver {
 
+    private static final String SETTINGS_SHARED_PREFERENCES_NAME = "Settings";
+    private static final String BLOCK_HIDDEN_NUMBERS = "allowHiddenNumbers";
+    private static final String BLOCK_UNKNOWN_NUMBERS = "allowUnknownNumbers";
+    private static final String BLOCK_BLACKLIST_NUMBERS = "allowBlacklistNumbers";
     NotificationManager mNM;
     TelephonyManager telephonyManager;
     ITelephony telephonyService;
 
-    private static final String SETTINGS_SHARED_PREFERENCES_NAME = "Settings";
-    private static final String ALLOW_HIDDEN_NUMBERS = "allowHiddenNumbers";
-
-    public final String INCOMING_NUMBER = "incoming_number";
-    public final String EXTRA_STRING_STATE = "state";
-    public final String PHONE_STATE_RINGING = "RINGING";
-
     @Override
     public void onReceive(Context context, Intent intent) {
-        String incomingNumber = intent.getStringExtra(INCOMING_NUMBER);
-        boolean isNumberAContact = isAContact(context,incomingNumber);
-        boolean blockHiddenNumbers = blockCallFromHiddenNumbers(context);
-        boolean isInOwnBlackList = isInOwnBlackList(context,incomingNumber);
 
-        if(intent.getStringExtra(EXTRA_STRING_STATE).equals(PHONE_STATE_RINGING)) {
-        Bundle bb = intent.getExtras();
-            if(!blockHiddenNumbers){
-                if(isInOwnBlackList){
-                    blockCall(context, bb);
-                } else {
-                    if(/*is in blackList*/ false){
-                        if(!isNumberAContact) { //is a contact?
-                            blockCall(context, bb);
+
+        if (intent.getAction().equals(TelephonyManager.ACTION_PHONE_STATE_CHANGED)) {
+            if (intent.getStringExtra(TelephonyManager.EXTRA_STATE).equals(TelephonyManager.EXTRA_STATE_RINGING)) {
+                String incomingNumber = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
+                boolean blockUnknownNumbers = isAContact(context, incomingNumber);
+                boolean blockHiddenNumbers = blockCallFromHiddenNumbers(context);
+                boolean blockBlacklistNumbers = isInOwnBlackList(context, incomingNumber);
+                Bundle bb = intent.getExtras();
+                if (!blockHiddenNumbers) {
+                    if (blockBlacklistNumbers) {
+                        blockCall(context, incomingNumber);
+                    } else {
+                        if (blockUnknownNumbers) { //is a contact?
+                            blockCall(context, incomingNumber);
+
                         }
                     }
-                }
-            }
-            else {
-                if(incomingNumber==null){
-                    blockCall(context, bb);
                 } else {
-                    if(isInOwnBlackList){
-                        blockCall(context, bb);
+                    if (incomingNumber == null) {
+                        blockCall(context, null);
                     } else {
-                        if(/*is in blackList*/ false){
-                            if(!isNumberAContact) { //is a contact?
-                                blockCall(context, bb);
+                        if (blockBlacklistNumbers) {
+                            blockCall(context, incomingNumber);
+                        } else {
+                            if (blockUnknownNumbers) { //is a contact?
+                                blockCall(context, incomingNumber);
                             }
                         }
                     }
@@ -75,33 +75,45 @@ public class CallBlocker extends BroadcastReceiver {
     private boolean blockCallFromHiddenNumbers(Context context) {
         SharedPreferences settings = context.getSharedPreferences(SETTINGS_SHARED_PREFERENCES_NAME,
                 Context.MODE_PRIVATE);
-        boolean blockCallFromHiddenNumbers = false;
-        try{
-            blockCallFromHiddenNumbers = settings.getBoolean(ALLOW_HIDDEN_NUMBERS, true);
-        } catch(Exception e) {
-            System.out.print("error" + e);
+        return settings.getBoolean(BLOCK_HIDDEN_NUMBERS, false);
+    }
+
+    private boolean isInOwnBlackList(Context context, String incomingNumber) {
+        SharedPreferences settings = context.getSharedPreferences(SETTINGS_SHARED_PREFERENCES_NAME,
+                Context.MODE_PRIVATE);
+        if (!(settings.getBoolean(BLOCK_BLACKLIST_NUMBERS, false))) {
+            return false;
         }
-        return blockCallFromHiddenNumbers;
+        Realm realm = Realm.getInstance(context);
+        RealmQuery query = realm.where(ContactModel.class);
+        RealmResults<ContactModel> results = query.equalTo("phoneNumber", incomingNumber).findAll();
+        return !results.isEmpty();
     }
 
-    private boolean isInOwnBlackList(Context context,String incomingNumber){
-        PhonesDataSource pDS = new PhonesDataSource(context);
-        pDS.open();
-        Boolean bool = pDS.isInOwnBlackList(incomingNumber);
-        pDS.close();
+    private boolean isAContact(Context context, String incomingNumber) {
+        SharedPreferences settings = context.getSharedPreferences(SETTINGS_SHARED_PREFERENCES_NAME,
+                Context.MODE_PRIVATE);
+        if (!(settings.getBoolean(BLOCK_UNKNOWN_NUMBERS, false))) {
+            return false;
+        }
+        Uri contactUri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(incomingNumber));
 
-        return bool;
+        Cursor cursor = context.getContentResolver().query(contactUri, new String[]{ContactsContract.PhoneLookup.DISPLAY_NAME}, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            cursor.close();
+            return false;
+        } else {
+            if (cursor != null) {
+                cursor.close();
+            }
+            return true;
+        }
     }
 
-    private boolean isAContact(Context context, String incomingNumber){
-        Uri uri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(incomingNumber));
-        Cursor phone = context.getContentResolver().query(uri, new String[]{ContactsContract.PhoneLookup.DISPLAY_NAME}, null, null, null);
-        return phone.getCount()!=0;
-    }
-
-    public void blockCall(Context ctx, Bundle b){
+    public void blockCall(Context ctx, String incomingNumber) {
         TelephonyManager telephony = (TelephonyManager)
-            ctx.getSystemService(Context.TELEPHONY_SERVICE);
+                ctx.getSystemService(Context.TELEPHONY_SERVICE);
         try {
             Class cls = Class.forName(telephony.getClass().getName());
             Method m = cls.getDeclaredMethod("getITelephony");
@@ -109,41 +121,59 @@ public class CallBlocker extends BroadcastReceiver {
             telephonyService = (ITelephony) m.invoke(telephony);
             //telephonyService.silenceRinger();
             telephonyService.endCall();
-            String incoming_number = b.getString(INCOMING_NUMBER);
             Long current_time = getCurrentTime();
-            showNotification(ctx, incoming_number, current_time);
+            showNotification(ctx, incomingNumber, current_time);
 
         } catch (Exception e) {
-        e.printStackTrace();
+            e.printStackTrace();
         }
     }
 
-    public Long getCurrentTime(){
+    public Long getCurrentTime() {
         Calendar calendar = Calendar.getInstance();
-        Long current_time = calendar.getTime().getTime();
-        return current_time;
+        return calendar.getTime().getTime();
     }
 
     private void showNotification(Context context, String number, Long curent_time) {
         String content_title = context.getResources().getString(R.string.notification_block_call_content_title);
         String content_text = context.getResources().getString(R.string.notification_block_call_content_text);
+        Uri contactUri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(number));
 
+        Cursor cursor = context.getContentResolver().query(contactUri, new String[]{ContactsContract.PhoneLookup.DISPLAY_NAME}, null, null, null);
+        String name = null;
+        if (cursor != null && cursor.moveToFirst()) {
+            name = cursor.getString(cursor.getColumnIndex(ContactsContract.PhoneLookup.DISPLAY_NAME));
+        }
+        if (cursor != null) {
+            cursor.close();
+        }
         Intent intent = new Intent(context, MainActivity.class);
         PendingIntent pIntent = PendingIntent.getActivity(context, 0, intent, 0);
 
-        if(number == null){
+        if (number == null) {
             content_title = context.getResources().getString(R.string.notification_block_call_private_content_title);
             content_text = context.getResources().getString(R.string.notification_block_call_private_content_text);
             number = "";
         }
 
-        Notification notification = new Notification.Builder(context)
-                .setContentTitle(content_title)
-                .setContentText(content_text + number)
-                .setSmallIcon(R.drawable.ic_launcher)
-                .setContentIntent(pIntent)
-                .setWhen(curent_time)
-                .getNotification();
+        Notification notification;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+            notification = new Notification.Builder(context)
+                    .setContentTitle(content_title)
+                    .setContentText(content_text + " " + (name != null ? name : number) + "!")
+                    .setSmallIcon(R.drawable.ic_launcher)
+                    .setContentIntent(pIntent)
+                    .setWhen(curent_time)
+                    .build();
+        } else {
+            notification = new Notification.Builder(context)
+                    .setContentTitle(content_title)
+                    .setContentText(content_text + " " + (name != null ? name : number) + "!")
+                    .setSmallIcon(R.drawable.ic_launcher)
+                    .setContentIntent(pIntent)
+                    .setWhen(curent_time)
+                    .getNotification();
+        }
 
         NotificationManager notificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
