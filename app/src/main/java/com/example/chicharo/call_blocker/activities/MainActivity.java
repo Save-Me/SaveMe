@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
     public void onEvent(ContactEvent contactEvent) {
         ContactModel contactModel = contactEvent.getContactModel();
         realm.beginTransaction();
-        realm.copyToRealm(contactModel);
+        realm.copyToRealmOrUpdate(contactModel);
         realm.commitTransaction();
         blockedContactsAdapter.notifyDataSetChanged();
         setEmptyRecycler();
@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
     public void onEvent(ContactsListEvent contactEvent) {
         List<ContactModel> contactModels = contactEvent.getContactModels();
         realm.beginTransaction();
-        realm.copyToRealm(contactModels);
+        realm.copyToRealmOrUpdate(contactModels);
         realm.commitTransaction();
         blockedContactsAdapter.notifyDataSetChanged();
         setEmptyRecycler();
