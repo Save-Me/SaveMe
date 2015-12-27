@@ -2,21 +2,20 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true">
         <shape android:shape="oval">
-            <size android:width="?attr/actionBarSize" android:height="?attr/actionBarSize" />
-            <solid android:color="@color/primary_light" />
+            <size android:width="40dp" android:height="40dp" />
+            <solid android:color="#9091b3cf" />
         </shape>
     </item>
     <item android:state_focused="true">
         <shape android:shape="oval">
-            <size android:width="?attr/actionBarSize" android:height="?attr/actionBarSize" />
-            <solid android:color="#999999" />
+            <size android:width="40dp" android:height="40dp" />
+            <solid android:color="#30999999" />
         </shape>
     </item>
     <item>
         <shape android:shape="oval">
-            <size android:width="?attr/actionBarSize" android:height="?attr/actionBarSize" />
-            <solid android:color="@android:color/white" />
-
+            <size android:width="40dp" android:height="40dp" />
+            <solid android:color="#00ffffff" />
         </shape>
     </item>
 </selector>
