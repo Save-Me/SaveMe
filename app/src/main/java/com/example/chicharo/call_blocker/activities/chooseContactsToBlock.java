@@ -169,5 +169,7 @@ public class ChooseContactsToBlock extends AppCompatActivity {
 
     private void setUpFirstSelectedTab() {
         mViewPager.setCurrentItem(TAB_SELECTOR);
+        mTabs.getTabAt(TAB_SELECTOR).getCustomView().setSelected(true);
+
     }
 }

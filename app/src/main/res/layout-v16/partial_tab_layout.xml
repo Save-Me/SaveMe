@@ -22,6 +22,7 @@
         android:fontFamily="serif"
         android:maxLines="1"
         android:text="@string/Tab"
+        android:textColor="@color/tab_color"
         android:textSize="@dimen/tab_label" />
 
 

@@ -21,7 +21,7 @@
             android:layout_gravity="bottom"
             android:background="@color/tab_background_color"
             app:tabGravity="fill"
-            app:tabIndicatorColor="@color/tab_color"
+            app:tabIndicatorColor="@color/tab_selected_color"
             app:tabMode="fixed" />
 
     </android.support.design.widget.AppBarLayout>
