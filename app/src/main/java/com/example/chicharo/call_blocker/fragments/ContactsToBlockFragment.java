@@ -1,4 +1,4 @@
-package com.example.chicharo.call_blocker;
+package com.example.chicharo.call_blocker.fragments;
 
 import android.database.Cursor;
 import android.os.Bundle;
@@ -10,7 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.chicharo.call_blocker.R;
 import com.example.chicharo.call_blocker.adapters.ContactsAdapter;
+import com.example.chicharo.call_blocker.models.ContactModel;
 import com.example.chicharo.call_blocker.service.ContactEvent;
 
 import java.util.ArrayList;

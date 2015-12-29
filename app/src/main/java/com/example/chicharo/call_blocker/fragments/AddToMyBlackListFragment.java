@@ -18,9 +18,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.example.chicharo.call_blocker.ChooseContactsToBlockActivity;
-import com.example.chicharo.call_blocker.ContactModel;
 import com.example.chicharo.call_blocker.R;
+import com.example.chicharo.call_blocker.activities.ChooseContactsToBlockActivity;
+import com.example.chicharo.call_blocker.models.ContactModel;
 import com.example.chicharo.call_blocker.service.ContactEvent;
 
 import butterknife.Bind;

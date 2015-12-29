@@ -9,9 +9,9 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
-import com.example.chicharo.call_blocker.ChooseContactsToBlockActivity;
-import com.example.chicharo.call_blocker.ContactModel;
 import com.example.chicharo.call_blocker.R;
+import com.example.chicharo.call_blocker.activities.ChooseContactsToBlockActivity;
+import com.example.chicharo.call_blocker.models.ContactModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

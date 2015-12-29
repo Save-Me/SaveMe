@@ -14,9 +14,9 @@ import android.provider.ContactsContract;
 import android.telephony.TelephonyManager;
 
 import com.android.internal.telephony.ITelephony;
-import com.example.chicharo.call_blocker.ContactModel;
 import com.example.chicharo.call_blocker.R;
 import com.example.chicharo.call_blocker.activities.MainActivity;
+import com.example.chicharo.call_blocker.models.ContactModel;
 
 import java.lang.reflect.Method;
 import java.util.Calendar;

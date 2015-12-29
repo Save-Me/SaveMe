@@ -46,7 +46,7 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".ChooseContactsToBlockActivity" />
+        <activity android:name=".activities.ChooseContactsToBlockActivity" />
     </application>
 
 </manifest>

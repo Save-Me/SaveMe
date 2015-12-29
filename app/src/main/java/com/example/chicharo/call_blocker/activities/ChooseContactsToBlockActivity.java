@@ -1,4 +1,4 @@
-package com.example.chicharo.call_blocker;
+package com.example.chicharo.call_blocker.activities;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -13,8 +13,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.chicharo.call_blocker.R;
+import com.example.chicharo.call_blocker.TabDeployer;
 import com.example.chicharo.call_blocker.adapters.FragmentListAdapter;
+import com.example.chicharo.call_blocker.fragments.ContactsToBlockFragment;
 import com.example.chicharo.call_blocker.fragments.RecentCallsToBlockFragment;
+import com.example.chicharo.call_blocker.models.ContactModel;
 import com.example.chicharo.call_blocker.service.ContactsListEvent;
 
 import java.util.ArrayList;
