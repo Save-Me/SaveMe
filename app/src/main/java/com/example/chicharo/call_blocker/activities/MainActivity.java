@@ -14,10 +14,10 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.example.chicharo.call_blocker.ContactModel;
 import com.example.chicharo.call_blocker.R;
 import com.example.chicharo.call_blocker.adapters.BlackListAdapter;
 import com.example.chicharo.call_blocker.fragments.AddToMyBlackListFragment;
-import com.example.chicharo.call_blocker.models.ContactModel;
 import com.example.chicharo.call_blocker.service.ContactEvent;
 import com.example.chicharo.call_blocker.service.ContactsListEvent;
 

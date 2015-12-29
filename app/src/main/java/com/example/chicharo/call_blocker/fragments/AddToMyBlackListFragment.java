@@ -18,9 +18,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.chicharo.call_blocker.ChooseContactsToBlockActivity;
+import com.example.chicharo.call_blocker.ContactModel;
 import com.example.chicharo.call_blocker.R;
-import com.example.chicharo.call_blocker.activities.ChooseContactsToBlock;
-import com.example.chicharo.call_blocker.models.ContactModel;
 import com.example.chicharo.call_blocker.service.ContactEvent;
 
 import butterknife.Bind;
@@ -92,7 +92,7 @@ public class AddToMyBlackListFragment extends DialogFragment implements View.OnC
                 Toast.makeText(getContext(), R.string.permissions_denied, Toast.LENGTH_LONG).show();
                 return;
             }
-            Intent blockContactActivity = new Intent(getContext(), ChooseContactsToBlock.class);
+            Intent blockContactActivity = new Intent(getContext(), ChooseContactsToBlockActivity.class);
             startActivity(blockContactActivity);
             dismiss();
         } else if (v.getId() == R.id.btn_cancel) {

@@ -7,8 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.chicharo.call_blocker.ContactModel;
 import com.example.chicharo.call_blocker.R;
-import com.example.chicharo.call_blocker.models.ContactModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

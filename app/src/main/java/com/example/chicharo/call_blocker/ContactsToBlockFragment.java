@@ -1,4 +1,4 @@
-package com.example.chicharo.call_blocker.fragments;
+package com.example.chicharo.call_blocker;
 
 import android.database.Cursor;
 import android.os.Bundle;
@@ -10,9 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.chicharo.call_blocker.R;
 import com.example.chicharo.call_blocker.adapters.ContactsAdapter;
-import com.example.chicharo.call_blocker.models.ContactModel;
 import com.example.chicharo.call_blocker.service.ContactEvent;
 
 import java.util.ArrayList;
@@ -47,7 +45,7 @@ public class ContactsToBlockFragment extends android.support.v4.app.Fragment imp
         Cursor cursor = getActivity().getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, null);
         while (cursor != null && cursor.moveToNext()) {
             ContactModel contactModel = ContactToOwnContactModel(cursor);
-            if(contactModel != null){
+            if (contactModel != null) {
                 contacts.add(contactModel);
             }
         }

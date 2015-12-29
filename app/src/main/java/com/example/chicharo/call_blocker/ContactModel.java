@@ -1,4 +1,4 @@
-package com.example.chicharo.call_blocker.models;
+package com.example.chicharo.call_blocker;
 
 
 import io.realm.RealmObject;

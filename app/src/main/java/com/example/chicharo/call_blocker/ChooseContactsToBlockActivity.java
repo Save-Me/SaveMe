@@ -1,4 +1,4 @@
-package com.example.chicharo.call_blocker.activities;
+package com.example.chicharo.call_blocker;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -13,12 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.chicharo.call_blocker.R;
-import com.example.chicharo.call_blocker.TabDeployer;
 import com.example.chicharo.call_blocker.adapters.FragmentListAdapter;
-import com.example.chicharo.call_blocker.fragments.ContactsToBlockFragment;
 import com.example.chicharo.call_blocker.fragments.RecentCallsToBlockFragment;
-import com.example.chicharo.call_blocker.models.ContactModel;
 import com.example.chicharo.call_blocker.service.ContactsListEvent;
 
 import java.util.ArrayList;
@@ -49,7 +45,7 @@ Apache License, Version 2.0
 This program makes use of Butterknife library (https://github.com/JakeWharton/butterknife) under the
 Apache License, Version 2.0
 */
-public class ChooseContactsToBlock extends AppCompatActivity {
+public class ChooseContactsToBlockActivity extends AppCompatActivity {
 
     private static final String BUNDLE_LAYOUT = "saved_layout";
     private static final int TAB_SELECTOR = 0;

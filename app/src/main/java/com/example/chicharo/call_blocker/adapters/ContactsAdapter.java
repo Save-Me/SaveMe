@@ -9,9 +9,9 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
+import com.example.chicharo.call_blocker.ChooseContactsToBlockActivity;
+import com.example.chicharo.call_blocker.ContactModel;
 import com.example.chicharo.call_blocker.R;
-import com.example.chicharo.call_blocker.activities.ChooseContactsToBlock;
-import com.example.chicharo.call_blocker.models.ContactModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -122,11 +122,11 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     contactModel.setChecked(isChecked);
-                    if (mContext instanceof ChooseContactsToBlock) {
+                    if (mContext instanceof ChooseContactsToBlockActivity) {
                         if (isChecked) {
-                            ((ChooseContactsToBlock) mContext).mBlockContacts.add(contactModel);
+                            ((ChooseContactsToBlockActivity) mContext).mBlockContacts.add(contactModel);
                         } else {
-                            ((ChooseContactsToBlock) mContext).mBlockContacts.remove(contactModel);
+                            ((ChooseContactsToBlockActivity) mContext).mBlockContacts.remove(contactModel);
                         }
                     }
                     notifyItemChanged(getAdapterPosition());

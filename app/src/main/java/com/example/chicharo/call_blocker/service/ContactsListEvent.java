@@ -1,6 +1,6 @@
 package com.example.chicharo.call_blocker.service;
 
-import com.example.chicharo.call_blocker.models.ContactModel;
+import com.example.chicharo.call_blocker.ContactModel;
 
 import java.util.List;
 
