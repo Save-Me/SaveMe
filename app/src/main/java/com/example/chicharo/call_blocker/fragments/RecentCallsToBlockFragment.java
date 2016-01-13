@@ -71,10 +71,15 @@ public class RecentCallsToBlockFragment extends android.support.v4.app.Fragment 
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.READ_CALL_LOG) != PackageManager.PERMISSION_GRANTED) {
             return contacts;
         }
-        Cursor cursor = getActivity().getContentResolver().query(android.provider.CallLog.Calls.CONTENT_URI, null, null, null, null);
+        Cursor cursor = getActivity().getContentResolver().query(android.provider.CallLog.Calls.CONTENT_URI, null, null, null, android.provider.CallLog.Calls.DATE + " DESC");
         while (cursor != null && cursor.moveToNext()) {
             ContactModel contactModel = ContactToOwnContactModel(cursor);
             if (contactModel != null) {
+                if (!contacts.isEmpty()) {
+                    if (contactModel.getPhoneNumber().equals(contacts.get(contacts.size() - 1).getPhoneNumber())) {
+                        continue;
+                    }
+                }
                 contacts.add(contactModel);
             }
         }
