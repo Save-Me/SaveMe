@@ -1,4 +1,4 @@
-package com.example.chicharo.call_blocker.models;
+package com.dreedi.chicharo.call_blocker.models;
 
 import io.realm.RealmObject;
 
@@ -14,7 +14,7 @@ public class PhoneModel extends RealmObject {
         this.number = number;
     }
 
-    public long get_id(){
+    public long get_id() {
         return this._id;
     }
 

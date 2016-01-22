@@ -14,7 +14,7 @@
             android:id="@+id/toolbar"
             layout="@layout/partial_toolbar_block" />
 
-        <com.example.chicharo.call_blocker.TabDeployer
+        <com.dreedi.chicharo.call_blocker.TabDeployer
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"

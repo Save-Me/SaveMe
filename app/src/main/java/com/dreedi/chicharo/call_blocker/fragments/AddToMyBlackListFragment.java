@@ -1,4 +1,4 @@
-package com.example.chicharo.call_blocker.fragments;
+package com.dreedi.chicharo.call_blocker.fragments;
 
 import android.Manifest;
 import android.annotation.TargetApi;
@@ -18,10 +18,10 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.example.chicharo.call_blocker.R;
-import com.example.chicharo.call_blocker.activities.ChooseContactsToBlockActivity;
-import com.example.chicharo.call_blocker.models.ContactModel;
-import com.example.chicharo.call_blocker.service.ContactEvent;
+import com.dreedi.chicharo.call_blocker.R;
+import com.dreedi.chicharo.call_blocker.activities.ChooseContactsToBlockActivity;
+import com.dreedi.chicharo.call_blocker.models.ContactModel;
+import com.dreedi.chicharo.call_blocker.service.ContactEvent;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

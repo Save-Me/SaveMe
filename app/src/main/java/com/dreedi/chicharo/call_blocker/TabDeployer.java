@@ -1,4 +1,4 @@
-package com.example.chicharo.call_blocker;
+package com.dreedi.chicharo.call_blocker;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

@@ -1,17 +1,14 @@
-package com.example.chicharo.call_blocker.adapters;
+package com.dreedi.chicharo.call_blocker.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 
-import com.example.chicharo.call_blocker.R;
-import com.example.chicharo.call_blocker.activities.ChooseContactsToBlockActivity;
-import com.example.chicharo.call_blocker.models.ContactModel;
+import com.dreedi.chicharo.call_blocker.R;
+import com.dreedi.chicharo.call_blocker.models.ContactModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -41,13 +38,13 @@ This program makes use of Butterknife library (https://github.com/JakeWharton/bu
 Apache License, Version 2.0
 */
 
-public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ContactViewHolder> {
+public class BlackListAdapter extends RecyclerView.Adapter<BlackListAdapter.ContactViewHolder> {
 
     onItemClickListener mItemClickListener;
     private List<ContactModel> blockedContactsList;
     private Context mContext;
 
-    public ContactsAdapter(Context context, List<ContactModel> blockedContactsList) {
+    public BlackListAdapter(Context context, List<ContactModel> blockedContactsList) {
         this.mContext = context;
         this.blockedContactsList = blockedContactsList;
     }
@@ -56,7 +53,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
     public ContactViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.
                 from(parent.getContext()).
-                inflate(R.layout.item_blocked_contacts_card, parent, false);
+                inflate(R.layout.item_black_list, parent, false);
         return new ContactViewHolder(itemView);
     }
 
@@ -79,15 +76,13 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
         void onItemClick(View v, int position);
     }
 
-    public class ContactViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ContactViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @Bind(R.id.blocked_contact_title)
         TextView contactName;
         @Bind(R.id.blocked_contact_number)
         TextView contactNumber;
         @Bind(R.id.contact_image)
         CircleImageView contactImg;
-        @Bind(R.id.checkBox)
-        CheckBox checkBox;
 
         public ContactViewHolder(View itemView) {
             super(itemView);
@@ -104,7 +99,6 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
         }
 
         public void setContact(final ContactModel contactModel) {
-
             if (contactModel.getImageUri() != null) {
                 Picasso.with(mContext).load(contactModel.getImageUri()).error(R.drawable.ic_contact_circle).into(contactImg);
             } else {
@@ -116,22 +110,6 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Contac
                 contactName.setText(contactModel.getContactName());
             }
             contactNumber.setText(contactModel.getPhoneNumber());
-            checkBox.setOnCheckedChangeListener(null);
-            checkBox.setChecked(contactModel.isChecked());
-            checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    contactModel.setChecked(isChecked);
-                    if (mContext instanceof ChooseContactsToBlockActivity) {
-                        if (isChecked) {
-                            ((ChooseContactsToBlockActivity) mContext).mBlockContacts.add(contactModel);
-                        } else {
-                            ((ChooseContactsToBlockActivity) mContext).mBlockContacts.remove(contactModel);
-                        }
-                    }
-                    notifyItemChanged(getAdapterPosition());
-                }
-            });
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.chicharo.call_blocker.fragments;
+package com.dreedi.chicharo.call_blocker.fragments;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -14,10 +14,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.chicharo.call_blocker.R;
-import com.example.chicharo.call_blocker.adapters.ContactsAdapter;
-import com.example.chicharo.call_blocker.models.ContactModel;
-import com.example.chicharo.call_blocker.service.ContactEvent;
+import com.dreedi.chicharo.call_blocker.R;
+import com.dreedi.chicharo.call_blocker.adapters.ContactsAdapter;
+import com.dreedi.chicharo.call_blocker.models.ContactModel;
+import com.dreedi.chicharo.call_blocker.service.ContactEvent;
 
 import java.util.ArrayList;
 import java.util.List;

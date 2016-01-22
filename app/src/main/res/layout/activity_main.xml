@@ -123,7 +123,7 @@
                     android:src="@drawable/plus_vector"
                     app:layout_anchor="@id/recycler_blocked_contacts"
                     app:layout_anchorGravity="bottom|right|end"
-                    app:layout_behavior="com.example.chicharo.call_blocker.adapters.ScrollAwareFabBehavior" />
+                    app:layout_behavior="com.dreedi.chicharo.call_blocker.adapters.ScrollAwareFabBehavior" />
 
             </android.support.design.widget.CoordinatorLayout>
 

@@ -1,4 +1,4 @@
-package com.example.chicharo.call_blocker.activities;
+package com.dreedi.chicharo.call_blocker.activities;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -14,12 +14,12 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import com.example.chicharo.call_blocker.R;
-import com.example.chicharo.call_blocker.adapters.BlackListAdapter;
-import com.example.chicharo.call_blocker.fragments.AddToMyBlackListFragment;
-import com.example.chicharo.call_blocker.models.ContactModel;
-import com.example.chicharo.call_blocker.service.ContactEvent;
-import com.example.chicharo.call_blocker.service.ContactsListEvent;
+import com.dreedi.chicharo.call_blocker.R;
+import com.dreedi.chicharo.call_blocker.adapters.BlackListAdapter;
+import com.dreedi.chicharo.call_blocker.fragments.AddToMyBlackListFragment;
+import com.dreedi.chicharo.call_blocker.models.ContactModel;
+import com.dreedi.chicharo.call_blocker.service.ContactEvent;
+import com.dreedi.chicharo.call_blocker.service.ContactsListEvent;
 
 import java.util.List;
 

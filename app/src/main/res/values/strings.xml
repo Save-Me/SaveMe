@@ -29,7 +29,7 @@
     <string name="block_blacklist_numbers">Block blacklist numbers</string>
     <string name="block_unknown_numbers">Block unknown numbers</string>
     <string name="notification_block_call_content_text">You\'ve been saved from</string>
-    <string name="Tab">Tab</string>
+    <string name="Tab" translatable="false">Tab</string>
     <string name="no_blocked_numbers">No blocked numbers.</string>
 </resources>
 

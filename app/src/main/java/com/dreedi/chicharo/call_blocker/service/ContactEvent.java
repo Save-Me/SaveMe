@@ -1,8 +1,6 @@
-package com.example.chicharo.call_blocker.service;
+package com.dreedi.chicharo.call_blocker.service;
 
-import com.example.chicharo.call_blocker.models.ContactModel;
-
-import java.util.List;
+import com.dreedi.chicharo.call_blocker.models.ContactModel;
 
 /*
 * Copyright 2015 Emilio Ruano Noé
@@ -25,14 +23,14 @@ Apache License, Version 2.0
 This program makes use of Butterknife library (https://github.com/JakeWharton/butterknife) under the
 Apache License, Version 2.0
 */
-public class ContactsListEvent {
-    List<ContactModel> contactModels;
+public class ContactEvent {
+    ContactModel contactModel;
 
-    public ContactsListEvent(List<ContactModel> contactModels) {
-        this.contactModels = contactModels;
+    public ContactEvent(ContactModel contactModel) {
+        this.contactModel = contactModel;
     }
 
-    public List<ContactModel> getContactModels() {
-        return contactModels;
+    public ContactModel getContactModel() {
+        return contactModel;
     }
 }
